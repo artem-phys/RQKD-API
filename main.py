@@ -18,7 +18,7 @@ app.add_middleware(
 )
 
 
-@app.get("/")
+@app.get("/qkd/")
 def qkd_protocol_run(
     initial_key_length: int,
     eavesdropping_rate: float,
