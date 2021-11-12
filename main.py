@@ -30,4 +30,4 @@ def qkd_protocol_run(
     qkd_protocol.run()
     qkd_protocol.print_summary()
 
-    return JSONResponse(content=json.loads(qkd_protocol.output()))
+    return JSONResponse(content=qkd_protocol.output())
