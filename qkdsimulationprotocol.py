@@ -173,7 +173,6 @@ class QKDSimulationProtocol:
         self.n_sifted_after_ee = len(self.alice_key_after_ee)
 
     def error_reconciliation_protocol(self):
-        """CASCADE implementation"""
 
         self.alice_reconciled_key = self.alice_key_after_ee
         self.bob_reconciled_key = self.alice_reconciled_key
@@ -223,9 +222,10 @@ class QKDSimulationProtocol:
         self.privacy_amplification()
 
     def print_summary(self):
+        precision = 3
         print(f'USER INPUT')
         print(f'Initial key length : {self.initial_key_length}')
-        print(f'Eavesdropping rate : {self.eavesdropping_rate}')
+        print(f'Eavesdropping rate : {self.eavesdropping_rate:.{precision}f}')
         print(f'Error estimation sampling rate : {self.error_estimation_sampling_rate}')
         print(f'Error reconciliation efficiency = {self.error_reconciliation_efficiency}')
         print()
@@ -237,18 +237,18 @@ class QKDSimulationProtocol:
 
         print('SIFTING')
         print(f'The sifted key length: l_sift = {self.l_sift}')
-        print(f'Real QBER = {self.real_qber}')
+        print(f'Real QBER = {self.real_qber:.{precision}}')
         print()
 
         print('ERROR ESTIMATION')
         print(f'Bits disclosed for error estimation = {self.n_error_estimation_bits}')
-        print(f'Estimated QBER = {self.estimated_qber}')
+        print(f'Estimated QBER = {self.estimated_qber:.{precision}}')
         print(f'Key length after error estimation = {self.n_sifted_after_ee}')
         print()
 
         print('ERROR RECONCILIATION')
         print(f'Error reconciliation status: {"success" if self.error_correction_success_flag else "failed"}')
-        print(f'Reconciliation QBER = {self.reconciliation_qber}')
+        print(f'Reconciliation QBER = {self.reconciliation_qber:.{precision}}')
         print(f'Shannon bound for leaked bits: n_shannon = {int(h(self.reconciliation_qber) * self.n_sifted_after_ee)}')
         print(f'Error reconciliation efficiency = {self.error_reconciliation_efficiency}')
         print(f'Information leakage during error reconciliation n_leaked = {self.leaked_bits}')
